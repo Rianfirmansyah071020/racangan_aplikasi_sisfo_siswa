@@ -1,0 +1,210 @@
+@startuml
+
+class Guru {
+    + id_guru
+    - nip_guru
+    - nama_guru
+    - jenis_kelamin_guru
+    - no_telp_guru
+    - alamat_guru    
+    - gambar_guru
+}
+
+class Kepsek {
+    + id_kepsek
+    - nip_kepsek
+    - nama_kepsek
+    - jenis_kelamin_kepsek
+    - no_telp_kepsek
+    - alamat_kepsek
+    - gambar_kepsek
+}
+
+class Siswa {
+    + id_siswa
+    - nisn_siswa
+    - nama_siswa
+    - jenis_kelamin_siswa
+    - alamat_siswa
+    - gambar_siswa
+}
+
+class Mapel {
+    + id_mapel
+    - kode_mata_pelajaran
+    - nama_mata_pelajaran
+}
+
+class Kelas {
+    + id_kelas
+    - kode_kelas    
+    - nama_kelas
+}
+
+class Mapel_Guru {
+    + id_mapel_guru
+    + id_guru
+    + id_mapel
+    + id_semester
+    + id_tahun_ajaran
+}
+
+class Kelas_Guru {
+    + id_kelas_guru
+    + id_guru
+    + id_kelas
+    + id_semester
+    + id_tahun_ajaran
+}
+
+class Kelas_Siswa {
+    + id_kelas_siswa
+    + id_siswa 
+    + id_kelas
+    + id_tahun_ajaran
+    + id_semester
+}
+
+
+class Tahun_Ajaran {
+    + id_tahun_ajaran
+    - nama_tahun_ajaran
+    - status_tahun_ajaran
+}
+
+class Semester {
+    + id_semester
+    - nama_semester
+    - status_semester
+}
+
+
+class File_Pendukung {
+    + id_file_Pendukung
+    + id_tahun_ajaran
+    + id_semester
+    - nama_file_Pendukung
+    - tanggal_file_Pendukung
+    - file_file_pendukung
+    - deskripsi_file_pendukung
+
+}
+
+class Nilai {
+    + id_nilai 
+    + id_guru 
+    + id_siswa 
+    + id_kelas 
+    + id_tahun_ajaran
+    + id_mapel 
+    + id_semester
+    - nilai
+}
+
+class Remedial {
+    + id_remedial
+    + id_nilai
+    + id_guru
+    + id_siswa
+    + id_kelas 
+    + id_tahun_ajaran 
+    + id_mapel
+    + id_semester
+    - status_remedial 
+    - nilai_remedial
+}
+
+class Surat {
+    + id_surat 
+    + id_siswa
+    + id_kelas
+    + id_semester
+    + id_tahun_ajaran
+    - nomor_surat
+    - tanggal_surat
+    - perihal_surat
+    - file_surat
+
+}
+
+class Ebook {
+    + id_ebook
+    + id_siswa
+    + id_kelas
+    + id_semester
+    + id_tahun_ajaran
+    - tanggal_ebook
+    - judul_ebook
+    - deskripsi_ebook 
+}
+
+class Keuangan {
+    + id_keuangan 
+    + id_guru
+    + id_siswa
+    + id_kelas
+    + id_semester
+    + id_tahun_ajaran
+    - tanggal_pembayaran
+    - file_bukti_pembayaran
+}
+
+
+class Jadwal {
+    + id_jadwal 
+    + id_mapel 
+    + id_kelas 
+    + id_semester
+    + id_tahun_ajaran
+    - waktu_masuk
+    - waktu_keluar
+    - tanggal_jadwal
+}
+
+Guru "1" --> "n" Mapel_Guru 
+Mapel_Guru "1" --> "n" Guru
+
+Guru "1" --> "1" Kelas_Guru 
+Kelas_Guru "1" --> "1" Guru
+
+Siswa "1" --> "1" Kelas_Siswa
+Kelas_Siswa "1" --> "n" Siswa
+
+Mapel "1" --> "n" Mapel_Guru
+
+Kelas "1" --> "n" Kelas_Guru
+Kelas "1" --> "n" Kelas_Siswa
+
+Tahun_Ajaran "1" --> "n" Kelas_Guru
+Tahun_Ajaran "1" --> "n" Kelas_Siswa
+Tahun_Ajaran "1" --> "n" Mapel_Guru
+Tahun_Ajaran "1" --> "n" File_Pendukung
+Tahun_Ajaran "1" --> "n" Surat
+Tahun_Ajaran "1" --> "n" Remedial
+Tahun_Ajaran "1" --> "n" Nilai
+Tahun_Ajaran "1" --> "n" Ebook
+
+
+Semester "1" --> "n" Kelas_Guru
+Semester "1" --> "n" Kelas_Siswa
+Semester "1" --> "n" Mapel_Guru
+Semester "1" --> "n" File_Pendukung
+Semester "1" --> "n" Surat
+Semester "1" --> "n" Remedial
+Semester "1" --> "n" Nilai
+Semester "1" --> "n" Ebook
+
+Siswa "1" --> "1" Nilai
+Guru "1" --> "1" Nilai
+Kelas "1" --> "n" Nilai
+Tahun_Ajaran "1" --> "n" Nilai
+Mapel "1" --> "n" Nilai
+
+
+Siswa "1" --> "1" Remedial
+Guru "1" --> "1" Remedial
+Kelas "1" --> "n" Remedial
+Tahun_Ajaran "1" --> "n" Remedial
+Mapel "1" --> "n" Remedial
+
+@enduml
