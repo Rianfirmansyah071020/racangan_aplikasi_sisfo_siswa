@@ -161,6 +161,14 @@ class Jadwal {
     - tanggal_jadwal
 }
 
+class User {
+    + id_user 
+    - kode_user 
+    - username 
+    - password 
+    - status_user
+}
+
 Guru "1" --> "n" Mapel_Guru 
 Mapel_Guru "1" --> "n" Guru
 
