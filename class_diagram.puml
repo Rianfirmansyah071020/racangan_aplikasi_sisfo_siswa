@@ -81,6 +81,7 @@ class Semester {
 
 class File_Pendukung {
     + id_file_Pendukung
+    + kode_file_pendukung
     + id_tahun_ajaran
     + id_semester
     - nama_file_Pendukung
@@ -139,8 +140,7 @@ class Ebook {
 }
 
 class Keuangan {
-    + id_keuangan 
-    + id_guru
+    + id_keuangan     
     + id_siswa
     + id_kelas
     + id_semester
